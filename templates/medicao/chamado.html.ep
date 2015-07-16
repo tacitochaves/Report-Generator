@@ -1,0 +1,21 @@
+% layout 'principal';
+% title 'Gerador de Relatório para Medições';
+
+<fieldset class="conteudo">
+    <form name="pesquisa" id="pesquisa" method="post">
+        <section>
+            <label for="data_inicio">Data início</label>
+            <input id="data_inicio" name="data_inicio" type="date" />
+        </section>
+        <section>
+            <label for="data_termino">Data término</label>
+            <input id="data_termino" name="data_termino" type="date" />
+        </section>
+    </form>
+    
+    <div id="plotagem">
+
+    </div>
+
+</fieldset>
+<!--<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->

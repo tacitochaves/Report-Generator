@@ -1,0 +1,103 @@
+ATENDIMENTOS POR CLASSIFICAÇÃO
+mysql> SELECT ticket_type.name AS "Tipo de Serviço", COUNT(*) AS Quantidade FROM ticket, ticket_type WHERE type_id = ticket_type.id AND ticket.create_time between '2015-07-01' and '2015-07-15' GROUP BY ticket_type.name;
++-------------------------------+------------+
+| Tipo de Serviço               | Quantidade |
++-------------------------------+------------+
+| Consultoria                   |          4 |
+| Erro Conhecido                |          1 |
+| Evento                        |          1 |
+| Incident                      |          1 |
+| Incidente                     |        221 |
+| Problema                      |          8 |
+| Requisição de Mudança         |          1 |
+| Solicitação de Informação     |         10 |
+| Solicitação de Serviço        |         27 |
+| Unclassified                  |        189 |
++-------------------------------+------------+
+10 rows in set (0.00 sec)
+
+ATENDIMENTOS POR SERVIÇOS
+mysql> SELECT service.name AS "Tipo de Serviço", COUNT(*) AS Quantidade FROM ticket, service WHERE service_id = service.id AND ticket.create_time between '2015-07-01' and '2015-07-15' GROUP BY service.name;
++--------------------------------------------------------------------------------------+------------+
+| Tipo de Serviço                                                                      | Quantidade |
++--------------------------------------------------------------------------------------+------------+
+| FORA DO ESCOPO                                                                       |          5 |
+| INFRAESTRUTURA DE TI::Serviço Gerenciado de Ativos de Rede                           |         15 |
+| INFRAESTRUTURA DE TI::Serviço Gerenciado de Correio Eletrônico                       |         13 |
+| INFRAESTRUTURA DE TI::Serviço Gerenciado de Servidores de Aplicação                  |          1 |
+| INFRAESTRUTURA DE TI::Serviço Gerenciado de Servidores Linux                         |          4 |
+| INFRAESTRUTURA DE TI::Serviço Gerenciado de Servidores WEB                           |          4 |
+| INFRAESTRUTURA DE TI::Serviço Gerenciado de Servidores Windows                       |         36 |
+| MONITORAMENTO::Gerenciamento de Acesso                                               |          1 |
+| Secretaria de Saúde do Maranhão - SESMA::COMPROD                                     |          2 |
+| Secretaria de Saúde do Maranhão - SESMA::E-Processos                                 |          3 |
+| SEGURANÇA DA INFORMAÇÃO::Serviço Gerenciado de Acesso Seguro via VPN                 |          2 |
+| SEGURANÇA DA INFORMAÇÃO::Serviço Gerenciado de Proteção de Perímetro Firewall        |         13 |
+| USUÁRIO FINAL::Aparelho de FAX                                                       |          1 |
+| USUÁRIO FINAL::Cabo de Rede                                                          |          3 |
+| USUÁRIO FINAL::Cartucho Impressora                                                   |          1 |
+| USUÁRIO FINAL::CD-ROM / DVD / Pendrive                                               |          2 |
+| USUÁRIO FINAL::CPU - Gabinete                                                        |         24 |
+| USUÁRIO FINAL::Data Show                                                             |          1 |
+| USUÁRIO FINAL::Digitalização de Documentos                                           |          2 |
+| USUÁRIO FINAL::Estabilizador                                                         |          8 |
+| USUÁRIO FINAL::Gravação de CD / DVD                                                  |          2 |
+| USUÁRIO FINAL::Impressora                                                            |         29 |
+| USUÁRIO FINAL::Instalação de Aplicativos                                             |          8 |
+| USUÁRIO FINAL::Levantamento de Infraestrutura                                        |          6 |
+| USUÁRIO FINAL::Monitor                                                               |          2 |
+| USUÁRIO FINAL::Mouse                                                                 |          4 |
+| USUÁRIO FINAL::Mudança de Local                                                      |          2 |
+| USUÁRIO FINAL::No-Break                                                              |          6 |
+| USUÁRIO FINAL::Pacote Office                                                         |          1 |
+| USUÁRIO FINAL::Placa de Rede                                                         |          2 |
+| USUÁRIO FINAL::Tarefas Administrativas                                               |          5 |
+| USUÁRIO FINAL::Teclado                                                               |          4 |
+| USUÁRIO FINAL::Telefonia                                                             |          7 |
+| USUÁRIO FINAL::Tonner                                                                |          7 |
+| USUÁRIO FINAL::Wiindows                                                              |         43 |
++--------------------------------------------------------------------------------------+------------+
+35 rows in set (0.08 sec)
+
+ATENDIMENTOS POR UNIDADE
+mysql> SELECT customer_user_id AS Cliente, COUNT(*) AS Quantidade FROM ticket WHERE ticket.create_time between '2015-06-01' and '2015-06-30' GROUP BY customer_user_id;
++--------------------------------------+------------+
+| Cliente                              | Quantidade |
++--------------------------------------+------------+
+| NULL                                 |          1 |
+| ALMOXARIFADO                         |          1 |
+| AQUILES_LISBOA                       |          1 |
+| bruno@cibernix.com                   |          1 |
+| carloslima                           |          3 |
+| casadotrabalhador                    |          1 |
+| CASA_DO_TRABALHADOR                  |         43 |
+| CIBERNIX                             |          5 |
+| CONSELHO_ESTADUAL_SAUDE              |          1 |
+| ESCOLA_TÉCNICA_DO_SUS                |          2 |
+| FEME                                 |          3 |
+| HCM                                  |          1 |
+| JUVENCIO_MATOS@SAUDE.MA.GOV.BR       |          2 |
+| MAILER-DAEMON@mxcorp1.u.inova.com.br |          9 |
+| otrs@atendimento.cibernix.com        |         18 |
+| OUVIDORIA                            |          2 |
+| paulino.cantanhede@saude.ma.gov.br   |          1 |
+| ricardo.nina@ecosistemas.com.br      |          7 |
+| ricardo.nina@siah.com.br             |          1 |
+| SUPORTE                              |        377 |
+| tacito                               |          1 |
+| vigilanciasanitaria                  |          2 |
+| VIGILANCIA_EPIDEMIOLOGICA            |          1 |
++--------------------------------------+------------+
+23 rows in set (0.03 sec)
+
+
+ATENDIMENTOS POR FILA
+mysql> SELECT queue.name AS Filas, COUNT(*) Quantidade FROM ticket, queue WHERE ticket.create_time BETWEEN '2015-07-01' and '2015-07-16' AND ticket.queue_id = queue.id AND queue.valid_id = 1 GROUP BY queue.name;
++-------------------------------------------+------------+
+| Filas                                     | Quantidade |
++-------------------------------------------+------------+
+| Grupo de Operação Service Desk - SESMA    |        223 |
+| Grupo Especialista da Cibernix Tecnologia |         56 |
++-------------------------------------------+------------+
+3 rows in set (0.01 sec)
+

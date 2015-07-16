@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../css/reset.css" />
+        <link rel="stylesheet" href="../css/gr.css" />
+        <script src="../js/jquery.min.js" defer></script>
+        <script src="../js/highcharts.js" defer></script>
+        <script src="../js/chart.js" defer></script>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <header class="cabecalho">
+                    <img src="../img/cibernix-logo.png" alt="Logomarca Cibernix"/>
+             <!--       <label>Tácito Chaves (administrador)</label> -->
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="/report/chamado">Medição de chamados</a></li>
+                            <li><a href="/report/servico">Medição de serviços</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <%= content %>
+            </div>
+        </main>
+
+    </body>
+</html>
